@@ -1,0 +1,69 @@
+# ==========================
+# Python
+# ==========================
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+.env
+*.env
+
+# Distribution / packaging
+*.egg
+*.egg-info/
+dist/
+build/
+*.wheel
+
+# ==========================
+# Django
+# ==========================
+logs/
+*.log
+*.pot
+*.pyc
+db.sqlite3
+media/
+staticfiles/
+static/
+
+# ==========================
+# Flask
+# ==========================
+instance/
+*.db
+*.sqlite3
+*.sqlite
+
+# ==========================
+# IDEs / Editors
+# ==========================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ==========================
+# Testing / Coverage
+# ==========================
+.pytest_cache/
+.coverage
+htmlcov/
+nosetests.xml
+coverage.xml
+*.cover
+.tox/
+.cache/
+
+# ==========================
+# Misc
+# ==========================
+*.swp
+*.bak
+*.tmp
+*.DS_Store
+.python-version
