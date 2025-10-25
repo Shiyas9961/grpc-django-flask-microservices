@@ -29,7 +29,7 @@ jobs:
             POSTGRES_DB: project_db
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: password
-            POSTGRES_HOST: localhost
+            POSTGRES_HOST: postgres
             POSTGRES_PORT: 5432
             PYTHONUNBUFFERED: 1
 
@@ -81,7 +81,7 @@ jobs:
                 POSTGRES_DB: project_db
                 POSTGRES_USER: postgres
                 POSTGRES_PASSWORD: password
-                POSTGRES_HOST: localhost
+                POSTGRES_HOST: postgres
                 POSTGRES_PORT: 5432
               run: |
                 python manage.py test
