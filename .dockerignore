@@ -1,0 +1,43 @@
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+.env
+*.env
+.venv/
+
+# Distribution / packaging
+*.egg
+*.egg-info/
+dist/
+build/
+
+# VSCode / IDEs
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+
+# Docker files
+Dockerfile
+docker-compose.override.yml
+
+# Python test cache
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Client/Server specific ignores (optional)
+server/tests/__pycache__/
+client/tests/__pycache__/
