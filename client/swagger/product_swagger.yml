@@ -1,0 +1,150 @@
+swagger: '2.0'
+info:
+  title: Product API
+  description: This API manages products using gRPC as the backend service.
+  version: "1.0.0"
+
+basePath: /grpc
+
+schemes:
+  - http
+
+consumes:
+  - application/json
+
+produces:
+  - application/json
+
+paths:
+  /products:
+    get:
+      summary: List all products
+      tags:
+        - Product
+      responses:
+        200:
+          description: List of products
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+    post:
+      summary: Create a new product
+      tags:
+        - Product
+      parameters:
+        - in: body
+          name: body
+          description: Product data
+          required: true
+          schema:
+            $ref: '#/definitions/ProductCreate'
+      responses:
+        200:
+          description: Product created
+          schema:
+            $ref: '#/definitions/Product'
+        400:
+          description: Missing required fields
+
+  /products/{product_id}:
+    get:
+      summary: Get product by ID
+      tags:
+        - Product
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: Product found
+          schema:
+            $ref: '#/definitions/Product'
+        404:
+          description: Product not found
+    put:
+      summary: Update product
+      tags:
+        - Product
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          type: string
+          description: ID of the product to update
+        - in: body
+          name: body
+          description: Updated product data
+          required: true
+          schema:
+            $ref: '#/definitions/ProductUpdate'
+      responses:
+        200:
+          description: Product updated successfully
+          schema:
+            $ref: '#/definitions/Product'
+        400:
+          description: Invalid request body
+        404:
+          description: Product not found
+    delete:
+      summary: Delete product
+      tags:
+        - Product
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description: Product deleted
+          schema:
+            type: object
+            properties:
+              deleted_id:
+                type: string
+
+definitions:
+  Product:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      price:
+        type: number
+
+  ProductCreate:
+    type: object
+    required:
+      - name
+      - description
+      - price
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      price:
+        type: number
+
+  ProductUpdate:
+    type: object
+    required:
+      - name
+      - description
+      - price
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      price:
+        type: number
+        format: float
