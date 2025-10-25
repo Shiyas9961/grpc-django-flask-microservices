@@ -70,10 +70,21 @@ jobs:
 
             - name: Wait for PostgreSQL to be ready
               run: |
-                until pg_isready -h $POSTGRES_HOST -p $POSTGRES_PORT -U $POSTGRES_USER -d $POSTGRES_DB; do
-                    echo "Waiting for PostgreSQL to be ready..."
-                    sleep 5
+                MAX_RETRIES=5
+                RETRY_COUNT=0
+                until pg_isready -h $POSTGRES_HOST -U $POSTGRES_USER -d $POSTGRES_DB; do
+                  RETRY_COUNT=$((RETRY_COUNT+1))
+                  echo "Waiting for PostgreSQL to be ready... ($RETRY_COUNT/$MAX_RETRIES)"
+                  if [ $RETRY_COUNT -ge $MAX_RETRIES ]; then
+                    echo "PostgreSQL is not ready after $MAX_RETRIES attempts, exiting."
+                    exit 1
+                  fi
+                  sleep 5
                 done
+              env:
+                POSTGRES_USER: postgres
+                POSTGRES_DB: project_db
+                POSTGRES_HOST: postgres
 
             - name: Run Django tests
               working-directory: ./server
